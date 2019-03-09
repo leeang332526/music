@@ -1,0 +1,30 @@
+div.search-hot-words{
+    margin-top: 5px;
+}
+.ranking_ul1{
+    width: 100%;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+.ranking_ul1 li{
+    float: left;
+    margin-right: 20px;
+}
+div.nav-head{
+    text-align: left;
+    background: lightskyblue;
+    height:30px;
+    width: 80%;
+    font: italic bold 20px arial,sans-serif;
+    color: white;
+    margin-left: 2em;
+ }
+ul#sideNav{
+    list-style-type: none;
+    font-size: 20px;
+    width: 80%;
+    margin-left: 2em;
+}
+tr.ranking_tr1 th{
+    font-size: 18px;
+}

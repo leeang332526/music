@@ -1,0 +1,12 @@
+ul.ranking_ul1{
+    width: 100%;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+ul.ranking_ul1 li{
+    float: left;
+    margin-right: 20px;
+}
+.search-hot-words{
+    margin-top: 5px;
+}

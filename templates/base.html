@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{% static '/css/play.css' %}"/>
+    <link href="../static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    {% block header_extends %}{% endblock %}
+</head>
+<body>
+<!--上-->
+    <div class="row">
+        <div class="col-md-4 col-xs-4">
+            <div>
+                <img src="/static/favicon.ico" width="50" height="50" style="margin:0 10px 0 40px; float: left;"/>
+                <h1 style="margin-left: 10px;">我的音乐</h1>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-4" style="padding: 0px;margin-top: 20px;">
+            <!--导航栏-->
+            <div>
+                <ul class="ranking_ul1" style="list-style-type: none;">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="{% url 'ranking'%}" target="_blank">歌曲排名</a></li>
+                    <li><a href="{% url 'home' 1%}" target="_blank">用户中心</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <form id="searchForm" action="{% url 'search' 1%}" method="post" target="_blank">
+                {% csrf_token %}
+                <div class="search-keyword">
+                    <input class="keyword form-control" style="width: 80%;display: inline-block;" name="kword" type="text" maxlength="120" placeholder="音乐节"/>
+                    <input id="subSearch" type="submit" class="search-button btn btn-primary" value="搜 索">
+                </div>
+            </form>
+            <!--热门搜索歌曲-->
+            <div id="suggest" class="search-suggest"></div>
+            <div class="search-hot-words" style="margin-top: 5px;">
+                {% for song in search_song %}
+                    <a href="{% url 'play' song.song.song_id %}" target="play">
+                        {{ song.song.song_name }}<span>&nbsp;&nbsp;</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div style="border-bottom: 1px solid black; margin: 5px 0 0 0"></div>
+    {% block content %}{% endblock %}
+</body>
+</html>

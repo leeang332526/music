@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    播放
+{% endblock %}
+{% block header_extends %}
+    <link type="text/css" rel="stylesheet" href="{% static '/css/play.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <!--中-->
+    <div class="div_middle">
+    <!--左边-->
+        <div style="width: 45%;float: left; text-align: center;">
+            <div id="jquery_jplayer_1" class="jp-jpplayer" data-url="{% static 'songFile/' %}{{ song_info.song_file }}"></div>
+        <!--歌曲封面-->
+            <div class="jp_img layz_load pic_po" title="点击播放" style="text-align: center;">
+                <img src="{% static 'songImg/'%}{{ song_info.song_img }}" width="200" height="200">
+            </div>
+        <!--各种按钮-->
+            <div>
+                <div class="progress" style="width: 80%;margin-left: 20px; float: left;">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                  <span class="sr-only">40% Complete (success)</span>
+                </div>
+                <span>04:00/04:42</span>
+            </div>
+        <!--歌词-->
+            <textarea  style="height: 300px; width: 300px;text-align: center;" id="lrc_content" data-url="{% static 'songLyric/' %}{{ song_info.song_lyrics }}">
+                 {{ song_lyrics }}
+            </textarea>
+        </div>
+    <!--右边-->
+        <div style="width: 50%; float: left;margin-left: 30px;height: 100%;">
+        <!--歌曲信息-->
+            <div class="product-price">
+                <h2 id="currentSong">{{ song_info.song_name }}</h2>
+                <div class="product-price-info">
+                    <span>歌手：{{ song_info.song_singer }}</span>
+                </div>
+                <div class="product-price-info" style="margin-top: 5px;">
+                    <span>专辑：{{ song_info.song_type }}</span>
+                    <span style="margin-left: 30px;">语种：{{ song_info.song_languages }}</span>
+                </div>
+                <div class="product-price-info" style="margin-top: 5px;">
+                    <span>流派：{{ song_info.song_type }}</span>
+                    <span style="margin-left: 30px;">发行时间：{{ song_info.song_release }}</span>
+                </div>
+            </div>
+        <!--播放列表-->
+            <div>
+                <a href="#"><button style="border: 1px solid black;width: 60px; height: 40px;margin: 10px 20px 10px 0; ">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>下载</button></a>
+                <a href="{% url 'comment' song_id%}">
+                    <button style="border: 1px solid black;width: 80px; height: 40px;">我要点评</button>
+                </a>
+            </div>
+
+            <div style="height: 415px;">
+                <div class="play-list-header">当前播放列表</div>
+                <ul class="playing-li" id="songList">
+                    {% for list in play_list %}
+                        {% if list.song_id == song_info.song_id %}
+                            <li data-id="{{ list.song_id }}" class="current">
+                        {% else %}
+                            <li data-id="{{ list.song_id }}">
+                        {% endif %}
+                            <span class="num">{{ forloop.counter }}</span>
+                            <a class="name" href="{% url 'play' list.song_id %}" target="play">{{ list.song_name }}</a>
+                            <a class="singer" href="javascript;;" target="_blank">{{ list.song_singer }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="play-list-footer"></div>
+            </div >
+        </div>
+    <!--下 相关歌曲-->
+    <div>
+        <div style="width: 50px;height: 50px;">
+            <ul class="parts-list" style="float: left;">
+            {% for item in song_relevant %}
+                <li style="float: left;">
+                    {% if item.song.song_id != song_info.song_id%}
+                        <a class="pic layz_load pic_po" href="{% url 'play' item.song.song_id %}" target="play">
+                            <img src="{% static 'songImg/' %}{{ item.song.song_img }}" width="120" height="120">
+                        </a>
+
+                        <h4><a href="{% url 'play' item.song.song_id %}" target="play">
+                                {{ item.song.song_name }}
+                            </a></h4>
+
+                        <a href="javascript:;" class="J_MoreParts accessories-more">
+                            {{ item.song.song_singer }}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </div>
+{% endblock %}

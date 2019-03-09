@@ -1,0 +1,64 @@
+
+/*搜索框*/
+div.search-keyword {
+    border:0px solid #000000;
+    width: 90%;
+}
+/*热门搜索歌曲*/
+div.search-hot-words {
+    font: normal normal 12px 宋体;
+}
+
+ul{
+    list-style-type: none;
+}
+.ul1{
+    width: 40%;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+.ul1 li{
+    float: left;
+    margin-right: 20px;
+}
+div.div1{
+    text-align: left;
+    background: lightskyblue;
+    height:30px;
+    width: 80%;
+    font: italic bold 20px arial,sans-serif;
+    color: white;
+    margin-left: 2em;
+}
+div.div2{
+    margin: 0 auto;
+    width: 80%;
+    height: 39px;
+    margin-left: 40px;
+    font: normal bold 18px arial,sans-serif;
+    text-align: center;
+}
+div.div3{
+    width: 175px;
+    height: 200px;
+    background: #CFCFCF;
+    display:inline-block;
+    margin-left: 35px;
+}
+
+div.div2 a{
+    padding-left: 0px;
+}
+div.aside{
+    height: 275px;
+    margin-top: 20px;
+}
+div.aside p{
+    margin-left: 30px;
+    font-size: 20px;
+}
+span.span1{
+    font: italic bold 18px arial;
+    margin-right: 8px;
+}
+
